@@ -15,7 +15,8 @@ Clone this repository.
 
 ## Install with PyPI
 
-`pip install`
+`pip install torch`
+`pip install transformers`
 `pip install errant`
 
 # Experimental Results
