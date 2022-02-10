@@ -19,10 +19,10 @@ def get_sentences(data_path, num=-1):
     return ids, texts
 
 def correct(model, sentence):
-    
+
     '''Gramformer decoding'''
 
-    result = model.correct([sentence], max_candidates=1)[0]
+    result = model.correct(sentence, max_candidates=1)[0]
     return result
 
 def count_edits(input, prediction):
