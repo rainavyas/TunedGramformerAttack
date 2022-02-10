@@ -76,7 +76,7 @@ if __name__ == "__main__":
     
     # Load Model
     model = Seq2seq()
-    model.load_state_dict(args.MODEL, map_location=torch.device('cpu'))
+    model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
     model.eval()
 
     # Load input sentences
