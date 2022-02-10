@@ -28,6 +28,7 @@ if __name__ == "__main__":
     # Get command line arguments
     commandLineParser = argparse.ArgumentParser()
     commandLineParser.add_argument('IN', type=str, help='Path to input data')
+    commandLineParser.add_argument('MODEL', type=str, help='Path to Gramformer model')
     commandLineParser.add_argument('VOCAB', type=str, help='ASR vocab file')
     commandLineParser.add_argument('LOG', type=str, help='Specify txt file to log iteratively better words')
     commandLineParser.add_argument('--prev_attack', type=str, default='', help='greedy universal attack phrase')
