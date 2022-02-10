@@ -39,6 +39,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('MODEL', type=str, help='Path to Gramformer model')
     commandLineParser.add_argument('OUT_BASE', type=str, help='Path to corrected output data - pass only base name, e.g. beam1_N4 or no_attack')
     commandLineParser.add_argument('--phrase', type=str, default='', help='Universal adversarial phrase')
+    commandLineParser.add_argument('--seed', type=int, default=1, help='reproducibility')
     args = commandLineParser.parse_args()
 
     # Save the command run
@@ -48,7 +49,7 @@ if __name__ == "__main__":
         f.write(' '.join(sys.argv)+'\n') 
     
     device = torch.device('cpu')
-    set_seeds()
+    set_seeds(args.seed)
 
     # Load Model
     model = Seq2seq()
