@@ -70,7 +70,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('FIG', type=str, help='Where to save histogram plot')
     commandLineParser.add_argument('EDIT_TYPE', type=str, help='Path to save edit type information')
     commandLineParser.add_argument('--phrase', type=str, default='', help='Universal adversarial phrase')
-    commandLineParser.add_argument('--seed', type=str, default='', help='reproducibility')
+    commandLineParser.add_argument('--seed', type=int, default=1, help='reproducibility')
     args = commandLineParser.parse_args()
 
     # Save the command run
