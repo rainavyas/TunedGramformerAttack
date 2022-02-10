@@ -20,6 +20,10 @@ from statistics import mean, stdev
 from collections import defaultdict
 from Seq2seq import Seq2seq
 
+def set_seeds(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+
 def update_edit_types(edits, edit_type_dict):
     '''
     Increment each type of edit that appears
@@ -66,6 +70,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('FIG', type=str, help='Where to save histogram plot')
     commandLineParser.add_argument('EDIT_TYPE', type=str, help='Path to save edit type information')
     commandLineParser.add_argument('--phrase', type=str, default='', help='Universal adversarial phrase')
+    commandLineParser.add_argument('--seed', type=str, default='', help='reproducibility')
     args = commandLineParser.parse_args()
 
     # Save the command run
@@ -73,6 +78,8 @@ if __name__ == "__main__":
         os.mkdir('CMDs')
     with open('CMDs/eval_uni_attack.cmd', 'a') as f:
         f.write(' '.join(sys.argv)+'\n') 
+    
+    set_seeds(args.seed)
     
     # Load Model
     model = Seq2seq()
