@@ -41,7 +41,7 @@ class Seq2seq(nn.Module):
 
         corrected = set()
         for pred in preds:  
-          corrected.add(self.correction_tokenizer.decode(pred, skip_special_tokens=True).strip())
+          corrected.add(self.tokenizer.decode(pred, skip_special_tokens=True).strip())
 
         corrected = list(corrected)
         return corrected
