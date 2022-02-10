@@ -134,13 +134,6 @@ if __name__ == "__main__":
     with open(args.EDIT_TYPE, 'w') as f:
             f.writelines(texts)
     
-
-    # # Print stats for samples filtered by number of actual errors (from no attack)
-    # thresholds = [0, 1, 2, 3, 4, 5]
-    # for thresh in thresholds:
-    #     edits_imperfect = [b for a,b in zip(edit_counts, edit_counts_with_attack) if a>thresh]
-    #     name = f'Filtered >{thresh}'
-    #     print_stats(edits_imperfect, name)
     
     # # Plot histogram of edit count distribution before and after attack
     # plt.hist(edit_counts, bins=12, alpha=0.5, label='No Attack', density=True)
