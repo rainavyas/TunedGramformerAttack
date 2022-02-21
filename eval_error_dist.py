@@ -61,11 +61,11 @@ if __name__ == "__main__":
 
     # Get sentences
     with open(args.SOURCE, 'r') as f:
-        source_texts = f.readlines(f)
+        source_texts = f.readlines()
     with open(args.REF, 'r') as f:
-        ref_texts = f.readlines(f)
+        ref_texts = f.readlines()
     with open(args.PRED, 'r') as f:
-        pred_texts = f.readlines(f)
+        pred_texts = f.readlines()
 
 
     # Get the edit types dicts
