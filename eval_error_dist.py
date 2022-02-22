@@ -9,7 +9,7 @@ ID2 text2
 
 Output the errant edit type distribution; for each edit type give the following:
 
-Ref count, Pred Total Count, Pred Correct Count, Pred Inserted Count 
+Ref count, Pred Total Count, Pred Correct Count, Pred Inserted Count, Pred Deleted Count 
 
 '''
 import sys
