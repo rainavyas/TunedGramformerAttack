@@ -1,12 +1,11 @@
 '''
 At input expect a SOURCE, REF and PRED file:
 
-text1
-text2
+ID1 text1
+ID2 text2
 .
 .
 .
-Use the output of align_preds.py to ensure text is aligned
 
 Output the errant edit type distribution; for each edit type give the following:
 
@@ -18,6 +17,7 @@ import os
 import argparse
 from gec_tools import return_edits
 from collections import defaultdict
+from align_preds import align_data, get_sentences_dict
 
 def update_edit_types(ref_edits, pred_edits, ref_count, pred_total, pred_correct, pred_insert, pred_del):
     '''
@@ -60,13 +60,11 @@ if __name__ == "__main__":
     with open('CMDs/eval_error_dist.cmd', 'a') as f:
         f.write(' '.join(sys.argv)+'\n') 
 
-    # Get sentences
-    with open(args.SOURCE, 'r') as f:
-        source_texts = f.readlines()
-    with open(args.REF, 'r') as f:
-        ref_texts = f.readlines()
-    with open(args.PRED, 'r') as f:
-        pred_texts = f.readlines()
+    # Get sentences and align
+    inc_id2text = get_sentences_dict(args.SOURCE)
+    pred_id2text = get_sentences_dict(args.PRED)
+    corr_id2text = get_sentences_dict(args.REF)
+    inc_sens, pred_sens, corr_sens = align_data(inc_id2text, pred_id2text, corr_id2text)
 
 
     # Get the edit types dicts
@@ -76,8 +74,8 @@ if __name__ == "__main__":
     pred_insert = defaultdict(int)
     pred_del = defaultdict(int)
 
-    for i, (s, r, p) in enumerate(zip(source_texts, ref_texts, pred_texts)):
-        print(f'On {i}/{len(source_texts)}')
+    for i, (s, r, p) in enumerate(zip(inc_sens, corr_sens, pred_sens)):
+        print(f'On {i}/{len(inc_sens)}')
         ref_edits = return_edits(s, r)
 
         s_with_attack = s[:]
