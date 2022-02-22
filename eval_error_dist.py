@@ -83,10 +83,12 @@ if __name__ == "__main__":
             s_with_attack = s + ' ' + args.phrase + '.'
         pred_edits = return_edits(s_with_attack, p)
         update_edit_types(ref_edits, pred_edits, ref_count, pred_total, pred_correct, pred_insert, pred_del)
-
+    
     # Save edit type distribution to file
     texts = ['Type Ref-Count Pred-Total Pred-Correct Pred-Insert Pred-Delete']
     for edit_type in sorted(list(ref_count.keys())):
         texts.append(f'\n{edit_type} {ref_count[edit_type]} {pred_total[edit_type]} {pred_correct[edit_type]} {pred_insert[edit_type]}  {pred_del[edit_type]}')
+    texts.append(f'\n\nSum {sum(ref_count.values())} {sum(pred_total.values())} {sum(pred_correct.values())} {sum(pred_insert.values())} {sum(pred_del.values())}')
     with open(args.OUT, 'w') as f:
             f.writelines(texts)
+    
