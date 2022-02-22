@@ -74,6 +74,9 @@ if __name__ == "__main__":
     pred_insert = defaultdict(int)
     pred_del = defaultdict(int)
 
+    # Get fraction of samples with no edits
+    num_samples_no_edits = 0
+
     for i, (s, r, p) in enumerate(zip(inc_sens, corr_sens, pred_sens)):
         print(f'On {i}/{len(inc_sens)}')
         ref_edits = return_edits(s, r)
@@ -82,13 +85,19 @@ if __name__ == "__main__":
         if args.phrase != '':
             s_with_attack = s + ' ' + args.phrase + '.'
         pred_edits = return_edits(s_with_attack, p)
+        if len(pred_edits) == 0:
+            num_samples_no_edits += 1
         update_edit_types(ref_edits, pred_edits, ref_count, pred_total, pred_correct, pred_insert, pred_del)
+    
+    # Get fraction of samples with no edits
+    frac_no_edits = num_samples_no_edits/len(inc_sens)
     
     # Save edit type distribution to file
     texts = ['Type Ref-Count Pred-Total Pred-Correct Pred-Insert Pred-Delete']
     for edit_type in sorted(list(ref_count.keys())):
-        texts.append(f'\n{edit_type} {ref_count[edit_type]} {pred_total[edit_type]} {pred_correct[edit_type]} {pred_insert[edit_type]}  {pred_del[edit_type]}')
+        texts.append(f'\n{edit_type} {ref_count[edit_type]} {pred_total[edit_type]} {pred_correct[edit_type]} {pred_insert[edit_type]} {pred_del[edit_type]}')
     texts.append(f'\n\nSum {sum(ref_count.values())} {sum(pred_total.values())} {sum(pred_correct.values())} {sum(pred_insert.values())} {sum(pred_del.values())}')
+    texts.append(f'\n\nFraction of Samples with no edits from source to prediction: {frac_no_edits}')
     with open(args.OUT, 'w') as f:
             f.writelines(texts)
     
