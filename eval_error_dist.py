@@ -51,6 +51,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('REF', type=str, help='Path to correct reference data')
     commandLineParser.add_argument('PRED', type=str, help='Path to prediction data')
     commandLineParser.add_argument('OUT', type=str, help='Path to save edit type information')
+    commandLineParser.add_argument('--phrase', type=str, default='', help='Universal adversarial phrase')
     args = commandLineParser.parse_args()
 
     # Save the command run
@@ -78,7 +79,11 @@ if __name__ == "__main__":
     for i, (s, r, p) in enumerate(zip(source_texts, ref_texts, pred_texts)):
         print(f'On {i}/{len(source_texts)}')
         ref_edits = return_edits(s, r)
-        pred_edits = return_edits(s, p)
+
+        s_with_attack = s[:]
+        if args.phrase != '':
+            s_with_attack = s + ' ' + args.phrase + '.'
+        pred_edits = return_edits(s_with_attack, p)
         update_edit_types(ref_edits, pred_edits, ref_count, pred_total, pred_correct, pred_insert, pred_del)
 
     # Save edit type distribution to file
