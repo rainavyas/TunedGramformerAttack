@@ -4,7 +4,7 @@ import argparse
 from turtle import color
 import matplotlib.pyplot as plt
 import numpy as np
-from pr_residue_detector import get_best_f_score
+from eval_residue_detector import get_best_f_score
 
 if __name__ == '__main__':
     # Get command line arguments
