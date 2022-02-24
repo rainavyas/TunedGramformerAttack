@@ -5,7 +5,7 @@ import sys
 import os
 import argparse
 from gec_tools import get_sentences
-from pr_residue_detector import get_best_f_score
+from eval_residue_detector import get_best_f_score
 from sklearn.metrics import precision_recall_curve
 # from statistics import mean
 
