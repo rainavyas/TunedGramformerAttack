@@ -121,7 +121,7 @@ if __name__ == '__main__':
     commandLineParser.add_argument('--attack_phrase', type=str, default='', help="universal attack phrase")
     commandLineParser.add_argument('--num_points', type=int, default=2600, help="number of data points to use")
     commandLineParser.add_argument('--num_points_val', type=int, default=800, help="number of data points to use for validation")
-    commandLineParser.add_argument('--N', type=int, default=3, help="Num word substitutions used in attack")
+    commandLineParser.add_argument('--N', type=int, default=3, help="Num words used in attack")
     commandLineParser.add_argument('--B', type=int, default=100, help="Specify batch size")
     commandLineParser.add_argument('--epochs', type=int, default=3, help="Specify epochs")
     commandLineParser.add_argument('--lr', type=float, default=0.0001, help="Specify learning rate")
