@@ -35,7 +35,10 @@ if __name__ == "__main__":
 
     for line in lines:
         elems = line.split()
-        edit_class = elems[0][0]
+        try:
+            edit_class = elems[0][0]
+        except:
+            print(line)
         if edit_class in all.keys():
             all[edit_class]['Ref Count'] += int(elems[1])
             all[edit_class]['Pred Total'] += int(elems[2])
