@@ -24,6 +24,7 @@ if __name__ == "__main__":
     # Load the data
     with open(args.IN, 'r') as f:
         lines = f.readlines()
+    lines = [l.rstrip('\n') for l in lines if len(l)>0]
     
     # Get stats by M, R, U
     M_vals = {'Ref Count':0, 'Pred Total':0, 'Pred Correct':0, 'Pred Insert':0, 'Pred Delete':0}
