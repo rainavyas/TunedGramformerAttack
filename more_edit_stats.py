@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # temp
     refs = [919, 2954, 596]
     for (key, vals), ref in zip(all.items(), refs):
-        print(f"{key}:\tRef Count: {vals['Ref Count']/ref}\tPred Total: {vals['Pred Total']/ref}\tPred Correct: {vals['Pred Correct']/ref}\tPred Insert: {vals['Pred Insert']/ref}\tPred Delete: {vals['Pred Delete']/ref}")
+        print(f"{key}:\tRef Count: {vals['Ref Count']/ref:.3}\tPred Total: {vals['Pred Total']/ref:.3}\tPred Correct: {vals['Pred Correct']/ref:.3}\tPred Insert: {vals['Pred Insert']/ref:.3}\tPred Delete: {vals['Pred Delete']/ref:.3}")
 
         
     # print stats
