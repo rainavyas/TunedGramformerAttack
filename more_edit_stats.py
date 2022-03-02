@@ -33,7 +33,7 @@ if __name__ == "__main__":
     all = {'M':M_vals, 'R':R_vals, 'U':U_vals}
 
     for line in lines:
-        elems = lines.split()
+        elems = line.split()
         edit_class = elems[0][0]
         if edit_class in all.keys():
             all[edit_class]['Ref Count'] += int(elems[1])
