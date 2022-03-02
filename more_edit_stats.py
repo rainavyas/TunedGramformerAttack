@@ -45,7 +45,13 @@ if __name__ == "__main__":
             all[edit_class]['Pred Correct'] += int(elems[3])
             all[edit_class]['Pred Insert'] += int(elems[4])
             all[edit_class]['Pred Delete'] += int(elems[5])
+
+    # temp
+    refs = [919, 2954, 596]
+    for (key, vals), ref in zip(all.items(), refs:
+        print(f"{key}:\tRef Count: {vals['Ref Count']/ref}\tPred Total: {vals['Pred Total']/ref}\tPred Correct: {vals['Pred Correct']/ref}\tPred Insert: {vals['Pred Insert']/ref}\tPred Delete: {vals['Pred Delete']/ref}")
+
         
     # print stats
-    for key, vals in all.items():
-        print(f"{key}:\tRef Count: {vals['Ref Count']}\tPred Total: {vals['Pred Total']}\tPred Correct: {vals['Pred Correct']}\tPred Insert: {vals['Pred Insert']}\tPred Delete: {vals['Pred Delete']}")
+    # for key, vals in all.items():
+    #     print(f"{key}:\tRef Count: {vals['Ref Count']}\tPred Total: {vals['Pred Total']}\tPred Correct: {vals['Pred Correct']}\tPred Insert: {vals['Pred Insert']}\tPred Delete: {vals['Pred Delete']}")
