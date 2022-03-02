@@ -45,6 +45,5 @@ class Seq2seq(nn.Module):
 
         corrected = list(corrected)
         return corrected
-    
 
         
