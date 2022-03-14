@@ -77,9 +77,9 @@ if __name__ == '__main__':
 
     labels = [0]*len(original_scores) + [1]*len(attack_scores)
     scores = original_scores + attack_scores
-    precision, recall, _ = precision_recall_curve(labels, scores)
-    best_precision, best_recall, best_f05 =  get_best_f_score(precision, recall, beta=0.5)
-    print(f'Precision: {best_precision}\tRecall: {best_recall}\tF0.5: {best_f05}')
+    precision, recall, thresholds = precision_recall_curve(labels, scores)
+    best_precision, best_recall, best_f05, best_thresh =  get_best_f_score(precision, recall, thresholds, beta=0.5)
+    print(f'Precision: {best_precision}\tRecall: {best_recall}\tF0.5: {best_f05}\tThreshold: {best_thresh}')
 
     # Save the pr data
-    np.savez(args.PR, precision, recall)
+    np.savez(args.PR, precision, recall, thresholds)

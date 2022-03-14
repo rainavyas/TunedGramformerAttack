@@ -14,11 +14,11 @@ from gec_tools import get_sentences
 from tools import get_default_device
 from Seq2seq import Seq2seq
 
-def get_best_f_score(precisions, recalls, beta=1.0):
+def get_best_f_score(precisions, recalls, thresholds, beta=1.0):
     f_scores = (1+beta**2)*((precisions*recalls)/((precisions*(beta**2))+recalls))
     f_scores = f_scores[~np.isnan(f_scores)]
     ind = np.argmax(f_scores)
-    return precisions[ind], recalls[ind], f_scores[ind]
+    return precisions[ind], recalls[ind], f_scores[ind], thresholds[ind]
 
 if __name__ == '__main__':
 
@@ -74,9 +74,9 @@ if __name__ == '__main__':
     
     print("Got prediction probs")
     # get precision recall values and highest F1 score (with associated prec and rec)
-    precision, recall, _ = precision_recall_curve(labels, adv_probs)
-    best_precision, best_recall, best_f05 =  get_best_f_score(precision, recall, beta=0.5)
-    print(f'Precision: {best_precision}\tRecall: {best_recall}\tF0.5: {best_f05}')
+    precision, recall, thresholds = precision_recall_curve(labels, adv_probs)
+    best_precision, best_recall, best_f05, best_thresh =  get_best_f_score(precision, recall, thresholds, beta=0.5)
+    print(f'Precision: {best_precision}\tRecall: {best_recall}\tF0.5: {best_f05}\tThreshold: {best_thresh}')
 
     # Save the pr data
-    np.savez(args.PR, precision, recall)
+    np.savez(args.PR, precision, recall, thresholds)
