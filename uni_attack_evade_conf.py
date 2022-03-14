@@ -43,7 +43,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('--num_points', type=int, default=1000, help='Number of training data points to consider')
     commandLineParser.add_argument('--search_size', type=int, default=400, help='Number of words to check')
     commandLineParser.add_argument('--start', type=int, default=0, help='Vocab batch number')
-    commandLineParser.add_argument('--conf_thresh', type=int, default=0, help='Confidence Detector threshold')
+    commandLineParser.add_argument('--conf_thresh', type=float, default=0, help='Confidence Detector threshold')
     commandLineParser.add_argument('--seed', type=int, default=1, help='reproducibility')
     args = commandLineParser.parse_args()
 
