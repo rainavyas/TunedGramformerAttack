@@ -14,6 +14,22 @@ from eval_uni_attack import set_seeds
 import json
 from datetime import date
 from uni_attack import get_avg
+from confidence import negative_confidence
+from statistics import mean
+
+def is_conf_less_than_thresh(model, sentences, attack_phrase, thresh):
+    '''
+        Return True if the average dataset confidence is less than threshold
+    '''
+    confs = []
+    for sent in sentences:
+        sent = sent + ' ' + attack_phrase
+        conf = -1*negative_confidence(sent, model)
+        confs.append(conf)
+    avg_conf = mean(confs)
+    if avg_conf < thresh:
+        return True
+    return False
 
 if __name__ == "__main__":
 
@@ -27,6 +43,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('--num_points', type=int, default=1000, help='Number of training data points to consider')
     commandLineParser.add_argument('--search_size', type=int, default=400, help='Number of words to check')
     commandLineParser.add_argument('--start', type=int, default=0, help='Vocab batch number')
+    commandLineParser.add_argument('--conf_thresh', type=int, default=0, help='Confidence Detector threshold')
     commandLineParser.add_argument('--seed', type=int, default=1, help='reproducibility')
     args = commandLineParser.parse_args()
 
@@ -65,6 +82,8 @@ if __name__ == "__main__":
     best = ('none', 1000)
     for word in test_words:
         attack_phrase = args.prev_attack + ' ' + word + '.'
+        if not is_conf_less_than_thresh(model, sentences, attack_phrase, args.conf_thresh):
+            continue
         edits_avg = get_avg(model, sentences, attack_phrase)
         # print(word, edits_avg) # temp debug
 
