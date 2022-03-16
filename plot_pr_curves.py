@@ -1,8 +1,7 @@
 import sys
 import os
 import argparse
-from turtle import color
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 from eval_residue_detector import get_best_f_score
 
@@ -30,14 +29,14 @@ if __name__ == '__main__':
         precision = file_object['arr_0']
         recall = file_object['arr_1']
         thresholds = file_object['arr_2']
-        plt.plot(recall, precision, label=name)
+        # plt.plot(recall, precision, label=name)
         best_precision, best_recall, best_f05, best_thresh =  get_best_f_score(precision, recall, thresholds, beta=0.5)
-        plt.plot(best_recall, best_precision, marker='x', color='k', ms=6)
-        print(f'{name} Best F0.5 is {best_f05}')
+        # plt.plot(best_recall, best_precision, marker='x', color='k', ms=6)
+        # print(f'{name} Best F0.5 is {best_f05}')
         print(f'{name} Threshold is {best_thresh}\n')
-    plt.xlabel('Recall')
-    plt.ylabel('Precision')
-    plt.ylim(0.5,1.01)
-    plt.xlim(0.0,1.01)
-    plt.legend()
-    plt.savefig(args.OUT, bbox_inches='tight')
+    # plt.xlabel('Recall')
+    # plt.ylabel('Precision')
+    # plt.ylim(0.5,1.01)
+    # plt.xlim(0.0,1.01)
+    # plt.legend()
+    # plt.savefig(args.OUT, bbox_inches='tight')
