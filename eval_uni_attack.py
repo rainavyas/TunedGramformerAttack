@@ -105,8 +105,9 @@ if __name__ == "__main__":
 
         correction = correct(model, sent)
         correction_with_attack = correct(model, sent_with_attack)
-        print(f'Sentence: {sent_with_attack}')
-        print(f'Correction: {correction_with_attack}')
+        print(f'Input Sentence with attack: {sent_with_attack}')
+        print(f'Prediction Sentence without attack: {correction}')
+        print(f'Prediction Sentence with attack: {correction_with_attack}')
 
         edits = return_edits(sent, correction)
         update_edit_types(edits, original_edit_types)
