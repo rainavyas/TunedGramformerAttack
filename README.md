@@ -9,6 +9,11 @@ Here, the attack experiments are performed on the [FCE public dataset](https://i
 
 The GEC system used is the T5 based [Gramformer system](https://githubhelp.com/PrithivirajDamodaran/Gramformer) (229.9M parameters) finetuned on [CLC+BEA data](https://www.cl.cam.ac.uk/research/nl/bea2019st/).
 
+# Example
+
+Original Sentence: _The cat sat on the mat._
+Attacked Sentence: _The cat sat on the mat, ink lm mv._
+
 # Requirements
 
 Clone this repository.
