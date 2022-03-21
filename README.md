@@ -12,7 +12,8 @@ The GEC system used is the T5 based [Gramformer system](https://githubhelp.com/P
 # Example
 
 Original Sentence: _The cat sat on the mat._
-Attacked Sentence: _The cat sat on the mat, ink lm mv._
+
+Attacked Sentence: _The cat sat on the mat. ink lm mv._
 
 # Requirements
 
