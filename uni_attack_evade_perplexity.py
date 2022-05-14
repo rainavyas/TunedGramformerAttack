@@ -18,7 +18,7 @@ from perplexity import perplexity
 from statistics import mean
 from transformers import GPT2LMHeadModel, GPT2TokenizerFast
 
-def is_perp_less_than_thresh(model, sentences, attack_phrase, thresh):
+def is_perp_less_than_thresh(sentences, attack_phrase, thresh):
     '''
         Return True if the average dataset perplexity is less than threshold
     '''
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     best = ('none', 1000)
     for word in test_words:
         attack_phrase = args.prev_attack + ' ' + word + '.'
-        if not is_perp_less_than_thresh(model, sentences, attack_phrase, args.perp_thresh):
+        if not is_perp_less_than_thresh(sentences, attack_phrase, args.perp_thresh):
             continue
         edits_avg = get_avg(model, sentences, attack_phrase)
         # print(word, edits_avg) # temp debug
