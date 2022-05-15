@@ -27,13 +27,12 @@ def is_perp_less_than_thresh(sentences, attack_phrase, thresh):
     perps = []
     for sent in sentences:
         sent = sent + ' ' + attack_phrase
-        import pdb; pdb.set_trace()
         try:
             perp = perplexity(sent, perp_tokenizer, perp_model)
             perps.append(min(perp, 1000))
         except:
             continue
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
     avg_perp = mean(perps)
     if avg_perp < thresh:
         return True
