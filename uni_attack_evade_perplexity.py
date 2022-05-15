@@ -30,7 +30,7 @@ def is_perp_less_than_thresh(sentences, attack_phrase, thresh):
         import pdb; pdb.set_trace()
         try:
             perp = perplexity(sent, perp_tokenizer, perp_model)
-            perps.append(perp)
+            perps.append(min(perp, 1000))
         except:
             continue
         import pdb; pdb.set_trace()
