@@ -25,8 +25,8 @@ class Seq2seq(nn.Module):
         # self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         # self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
-        model = T5ForConditionalGeneration.from_pretrained("t5-base")
-        tokenizer = T5Tokenizer.from_pretrained("t5-base")
+        model = T5ForConditionalGeneration.from_pretrained("t5-small")
+        tokenizer = T5Tokenizer.from_pretrained("t5-small")
     
     def correct(self, input_sentence, max_candidates=1):
         correction_prefix = "gec: "
