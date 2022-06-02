@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     # Get command line arguments
     commandLineParser = argparse.ArgumentParser()
-    commandLineParser.add_argument('INPUT_PATH', type=str, help='dataset e.g. twitter')
+    commandLineParser.add_argument('INPUT_PATH', type=str, help='path to input file')
     commandLineParser.add_argument('MODEL_PATH', type=str, help='Gramformer model file path')
     commandLineParser.add_argument('OUT', type=str, help='Directory to save output files')
     args = commandLineParser.parse_args()
