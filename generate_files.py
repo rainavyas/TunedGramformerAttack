@@ -33,16 +33,20 @@ if __name__ == '__main__':
 
     # Load Model
     model = Seq2seq()
-    model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(args.MODEL_PATH, map_location=torch.device('cpu')))
     model.eval()
 
     # Load input sentences
     _, sentences = get_sentences(args.INPUT_PATH)
 
     corrections = []
-    for s in sentences:
-        correction = correct(model, s)
-        corrections.append(correction)
+    for i,s in enumerate(sentences):
+        print(f'On {i}/{len(sentences)}')
+        try:
+            correction = correct(model, s)
+            corrections.append(correction)
+        except:
+            corrections.append('')
     
     # save files
     with open(f'{args.OUT}/sentences.inc', 'a') as f:
