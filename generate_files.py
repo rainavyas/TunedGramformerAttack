@@ -49,10 +49,10 @@ if __name__ == '__main__':
             corrections.append('')
     
     # save files
-    with open(f'{args.OUT}/sentences.inc', 'a') as f:
+    with open(f'{args.OUT}/sentences.inc', 'w') as f:
         sentences = [s+'\n' for s in sentences]
         f.writelines(sentences)
-    with open(f'{args.OUT}/sentences.pred', 'a') as f:
+    with open(f'{args.OUT}/sentences.pred', 'w') as f:
         corrections = [c+'\n' for c in corrections]
         f.writelines(corrections)   
         
