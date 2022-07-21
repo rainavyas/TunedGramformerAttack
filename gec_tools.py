@@ -4,7 +4,7 @@ import re
 
 random.seed(10)
 
-def get_sentences(data_path, num=-1, remove_punct_space=False):
+def get_sentences(data_path, num=-1, remove_end_space=True):
     with open(data_path, 'r') as f:
         lines = f.readlines()
     if num > 0:
@@ -15,10 +15,11 @@ def get_sentences(data_path, num=-1, remove_punct_space=False):
     ids = [l.rstrip('\n').split()[0] for l in lines]
 
     # Remove space before full stops at end
-    texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
+    if remove_end_space:
+        texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
 
-    if remove_punct_space:
-        texts = [re.sub(r'\s([?.!,;:"](?:\s|$))', r'\1', t) for t in texts]
+    # if remove_punct_space:
+    #     texts = [re.sub(r'\s([?.!,;:"](?:\s|$))', r'\1', t) for t in texts]
 
     return ids, texts
 

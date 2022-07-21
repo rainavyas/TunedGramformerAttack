@@ -16,6 +16,9 @@ import torch
 from Seq2seq import Seq2seq
 from gec_tools import get_sentences, correct
 
+from spacy.lang.en import English
+nlp = English()
+
 if __name__ == '__main__':
 
     # Get command line arguments
@@ -37,7 +40,7 @@ if __name__ == '__main__':
     model.eval()
 
     # Load input sentences
-    _, sentences = get_sentences(args.INPUT_PATH, remove_punct_space=True)
+    _, sentences = get_sentences(args.INPUT_PATH, remove_end_space=False)
 
     corrections = []
     for i,s in enumerate(sentences):
@@ -47,6 +50,15 @@ if __name__ == '__main__':
             corrections.append(correction)
         except:
             corrections.append('')
+    
+    # tokenize corrections
+    tok_corrs = []
+    tokenizer = nlp.tokenizer
+    for l in corrections:
+        tokens = tokenizer(l)
+        token_strs = [tokens[i].text for i in range(len(tokens))]
+        tok_corrs.append(' '.join(token_strs))
+    corrections = tok_corrs[:]
     
     # save files
     with open(f'{args.OUT}/sentences.inc', 'w') as f:
