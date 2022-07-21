@@ -18,7 +18,7 @@ def get_sentences(data_path, num=-1, remove_punct_space=False):
     texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
 
     if remove_punct_space:
-        texts = [re.sub(r'\s([?.!"](?:\s|$))', r'\1', t) for t in texts]
+        texts = [re.sub(r'\s([?.!,;:"](?:\s|$))', r'\1', t) for t in texts]
 
     return ids, texts
 
