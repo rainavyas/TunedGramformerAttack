@@ -37,7 +37,7 @@ if __name__ == '__main__':
     model.eval()
 
     # Load input sentences
-    _, sentences = get_sentences(args.INPUT_PATH)
+    _, sentences = get_sentences(args.INPUT_PATH, remove_punct_space=True)
 
     corrections = []
     for i,s in enumerate(sentences):
